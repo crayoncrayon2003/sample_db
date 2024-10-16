@@ -1,0 +1,46 @@
+version: "3.8"
+
+services:
+  mongodb-primary:
+    image: mongo:7.0
+    hostname: mongodb-primary
+    container_name: mongodb-primary
+    volumes:
+      - ./data/mongodb-primary:/data/db
+      - ./init/mongodb.conf:/etc/mongodb.conf
+      - ./init/mongoinit.sh:/scripts/mongoinit.sh
+    expose:
+      - 27017
+    ports:
+      - 27017:27017
+    entrypoint: [ "mongod", "--config", "/etc/mongodb.conf" ]
+
+  mongodb-secondary:
+    image: mongo:7.0
+    hostname: mongodb-secondary
+    container_name: mongodb-secondary
+    volumes:
+      - ./data/mongodb-secondary:/data/db
+      - ./init/mongodb.conf:/etc/mongodb.conf
+    expose:
+      - 27017
+    ports:
+      - 27018:27017
+    entrypoint: [ "mongod", "--config", "/etc/mongodb.conf" ]
+    links:
+      - mongodb-primary
+
+  mongodb-arbiter:
+    image: mongo:7.0
+    hostname: mongodb-arbiter
+    container_name: mongodb-arbiter
+    volumes:
+      - ./data/mongodb-arbiter:/data/db
+      - ./init/mongodb.conf:/etc/mongodb.conf
+    expose:
+      - 27017
+    ports:
+      - 27019:27017
+    entrypoint: [ "mongod", "--config", "/etc/mongodb.conf" ]
+    links:
+      - mongodb-primary
