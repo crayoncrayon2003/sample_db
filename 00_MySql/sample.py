@@ -10,7 +10,6 @@ config = {
 }
 
 def sql():
-    print("接続文字列")
     try:
         conn = mysql.connector.connect(**config)
         if conn.is_connected():
@@ -18,16 +17,16 @@ def sql():
 
         cursor = conn.cursor()
 
-        print("テーブル作成")
+        print("create table")
         cursor.execute("CREATE TABLE IF NOT EXISTS sql_table (id serial PRIMARY KEY, name VARCHAR(50), quantity INTEGER);")
 
-        print("テーブルへデータ挿入")
+        print("set data")
         cursor.execute("INSERT INTO sql_table (name, quantity) VALUES (%s, %s);", ("banana", 150))
         cursor.execute("INSERT INTO sql_table (name, quantity) VALUES (%s, %s);", ("orange", 154))
         cursor.execute("INSERT INTO sql_table (name, quantity) VALUES (%s, %s);", ("apple", 100))
         conn.commit()
 
-        print("テーブルからデータ取得")
+        print("get data")
         cursor.execute("SELECT * FROM sql_table;")
         rows = cursor.fetchall()
         for row in rows:

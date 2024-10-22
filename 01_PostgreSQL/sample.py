@@ -7,22 +7,22 @@ user = "user"
 password = "user"
 
 def sql():
-    print("接続文字列")
+    print("connection string")
     conn_string = "host={0} user={1} password={2}".format(host, user, password)
     conn = psycopg2.connect(conn_string)
 
     cursor = conn.cursor()
 
-    print("テーブル作成")
+    print("create table")
     cursor.execute("CREATE TABLE IF NOT EXISTS sql_table (id serial PRIMARY KEY, name VARCHAR(50), quantity INTEGER);")
 
-    print("テーブルへデータ挿入")
+    print("set data")
     cursor.execute("INSERT INTO sql_table (name, quantity) VALUES (%s, %s);", ("banana", 150))
     cursor.execute("INSERT INTO sql_table (name, quantity) VALUES (%s, %s);", ("orange", 154))
     cursor.execute("INSERT INTO sql_table (name, quantity) VALUES (%s, %s);", ("apple", 100))
     conn.commit()
 
-    print("テーブルからデータ取得")
+    print("get data")
     cursor.execute("SELECT * FROM sql_table;")
     rows = cursor.fetchall()
     for row in rows:
@@ -33,22 +33,22 @@ def sql():
     conn.close()
 
 def nosql():
-    print("接続文字列")
+    print("connection string")
     conn_string = "host={0} user={1} password={2}".format(host, user, password)
     conn = psycopg2.connect(conn_string)
 
     cursor = conn.cursor()
 
-    print("テーブル作成")
+    print("create table")
     cursor.execute("CREATE TABLE IF NOT EXISTS nosql_table (id serial PRIMARY KEY, name VARCHAR(50), quantity INTEGER, info JSONB);")
 
-    print("テーブルへデータ挿入")
+    print("set data")
     cursor.execute("INSERT INTO nosql_table (name, quantity, info) VALUES (%s, %s, %s);", ("banana", 150, Json({"key1":10, "key2": "update"})))
     cursor.execute("INSERT INTO nosql_table (name, quantity, info) VALUES (%s, %s, %s);", ("orange", 154, Json({"key1":20, "key2": "update"})))
     cursor.execute("INSERT INTO nosql_table (name, quantity, info) VALUES (%s, %s, %s);", ("apple" , 100, Json({"key1":30, "key2": "update"})))
     conn.commit()
 
-    print("テーブルからデータ取得")
+    print("get data")
     cursor.execute("SELECT * FROM nosql_table;")
     rows = cursor.fetchall()
     for row in rows:
@@ -59,13 +59,13 @@ def nosql():
     conn.close()
 
 def exportPARQUET():
-    print("接続文字列")
+    print("connection string")
     conn_string = "host={0} user={1} password={2}".format(host, user, password)
     conn = psycopg2.connect(conn_string)
 
     cursor = conn.cursor()
 
-    print("PARQUET出力")
+    print("outup PARQUET")
     cursor.execute("EXPORT TO PARQUET (directory = \'./PARQUET\') AS SELECT * FROM nosql_table;")
 
     # Clean up
