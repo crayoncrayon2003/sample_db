@@ -1,6 +1,7 @@
 # install
 ```
-pip3 install mysql-connector-python
+pip install MySQL-Python
+pip install mysql-connector-python
 ```
 
 # up
