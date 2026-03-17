@@ -1,25 +1,23 @@
-# create env
-```
-python3.12 -m venv env
-source env/bin/activate
-pip install --upgrade pip setuptools wheel
-pip install -r requirements.txt
-```
-
-# Sample1
-## Run
-```
-python3.12 sample1.py
+# Creating Virtual Environment
+```bash 
+$ python -m venv env
+$ source env/bin/activate
+(env) $ pip install --upgrade pip setuptools
+(env) $ pip install -r requirements.txt
 ```
 
-# Sample2
-## Run
-```
-python3.12 sample2.py
+# Test
+```bash
+(env) $ python sample1_DBpath.py
+(env) $ python sample2_memory.py
 ```
 
-# delete env
+# Deactivate Virtual Environment
+```bash
+(env) $ deactivate
 ```
-(env) deactivate
-rm -R env
+
+# Clean up
+```bash
+$ sudo rm -rf env
 ```

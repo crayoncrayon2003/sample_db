@@ -1,3 +1,9 @@
+# Preparation
+```bash
+$ mkdir -p data/pd
+$ mkdir -p data/tikv
+```
+
 # Up
 ```bash
 $ sudo docker compose up -d
@@ -13,8 +19,8 @@ $ source env/bin/activate
 
 # Test
 ```bash
-(env) $ python sample-mysql1.py
-(env) $ python sample-mysql2.py
+(env) $ python sample-tidb1.py
+(env) $ python sample-tidb2.py
 ```
 
 # Deactivate Virtual Environment
@@ -29,5 +35,6 @@ $ sudo docker compose down
 
 # Clean up
 ```bash
+$ sudo rm -rf data
 $ sudo rm -rf env
 ```

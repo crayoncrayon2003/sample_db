@@ -3,18 +3,22 @@
 $ sudo docker compose up -d
 ```
 
+# Preparation
+```bash
+docker exec -it mongodb-primary bash /scripts/mongoinit.sh
+```
+
 # Creating Virtual Environment
 ```bash 
 $ python -m venv env
 $ source env/bin/activate
 (env) $ pip install --upgrade pip setuptools
-(env) $ pip install mysql-connector-python
+(env) $ pip install pymongo 
 ```
 
 # Test
 ```bash
-(env) $ python sample-mysql1.py
-(env) $ python sample-mysql2.py
+(env) $ python sample-mongodb.py
 ```
 
 # Deactivate Virtual Environment
@@ -29,5 +33,6 @@ $ sudo docker compose down
 
 # Clean up
 ```bash
+$ sudo rm -rf data
 $ sudo rm -rf env
 ```

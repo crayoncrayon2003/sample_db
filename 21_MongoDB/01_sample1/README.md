@@ -8,13 +8,12 @@ $ sudo docker compose up -d
 $ python -m venv env
 $ source env/bin/activate
 (env) $ pip install --upgrade pip setuptools
-(env) $ pip install mysql-connector-python
+(env) $ pip install pymongo 
 ```
 
 # Test
 ```bash
-(env) $ python sample-mysql1.py
-(env) $ python sample-mysql2.py
+(env) $ python sample-mongodb.py
 ```
 
 # Deactivate Virtual Environment

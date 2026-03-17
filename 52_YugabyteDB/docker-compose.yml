@@ -1,0 +1,18 @@
+services:
+
+  yugabyte:
+    image: yugabytedb/yugabyte:2025.2.1.0-b141
+    container_name: yugabyte
+    hostname: yugabyte
+    command: >
+      bin/yugabyted start
+      --base_dir=/home/yugabyte/yb_data
+      --daemon=false
+    ports:
+      - "7000:7000"   # master UI
+      - "9000:9000"   # tablet server UI
+      - "5433:5433"   # YSQL (PostgreSQL互換)
+      - "9042:9042"   # YCQL (Cassandra互換)
+    volumes:
+      - ./data:/home/yugabyte/yb_data
+    restart: unless-stopped
