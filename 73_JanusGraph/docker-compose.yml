@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  janusgraph:
+    image: janusgraph/janusgraph:1.0.0
+    container_name: janusgraph
+    restart: unless-stopped
+    ports:
+      - "8182:8182"
+    environment:
+      TZ: "Asia/Tokyo"
+    volumes:
+      - janusgraph-data:/var/lib/janusgraph/db
+
+volumes:
+  janusgraph-data:
