@@ -1,46 +1,28 @@
-# Up
-```bash
-$ sudo docker compose up -d
-```
+# Elasticsearch サンプル集
 
-# DB Sitting
-Elasticsearch は全文検索エンジンで、REST API・クライアントライブラリ (elasticsearch) 経由でアクセスします。このサンプルでは簡単のためセキュリティ (認証 / TLS) を無効化しています。
+各サブフォルダは独立した docker-compose 構成のサンプルです。Python の仮想環境 (venv) はこの親フォルダで共通のものを使います。
 
-- REST API: http://localhost:9200
+- `01_sample0` … Elasticsearch 単体の全文検索 (match / fuzzy)
+- `01_sample1` … RDB との同期: **Dual Write** (アプリが PostgreSQL と ES の両方に書く)
+- `01_sample2` … RDB との同期: **Queue** (アプリが Redis に push → ワーカーが ES へ)
+- `01_sample3` … RDB との同期: **CDC** (Debezium が WAL を監視 → Redis Streams → ES。アプリは同期を書かない)
+- `01_sample4` … RDB との同期: **Batch** (定期的に PostgreSQL を SELECT して ES へ)
 
-```bash
-# 動作確認
-$ curl http://localhost:9200
-
-# インデックス一覧
-$ curl http://localhost:9200/_cat/indices?v
-```
+各サンプルの起動・実行手順は、それぞれのフォルダの README.md を参照してください。
 
 # Creating Virtual Environment
 ```bash 
 $ python -m venv env
 $ source env/bin/activate
 (env) $ pip install --upgrade pip setuptools
-(env) $ pip install elasticsearch==8.15.1
+(env) $ pip install elasticsearch==8.15.1 psycopg2-binary==2.9.10 redis==5.0.8
 ```
 
-# Test
-```bash
-# 基本の全文検索 (match: 関連度順)
-(env) $ python sample1-elasticsearch.py
+仮想環境を有効化したまま各サブフォルダに移動してスクリプトを実行します。
 
-# 特殊な検索: fuzzy (綴り間違いを許容するあいまい検索)
-(env) $ python sample2-elasticsearch.py
-```
-
-# Deactivate Virtual Environment
 ```bash
-(env) $ deactivate
-```
-
-# Down
-```bash
-$ sudo docker compose down
+(env) $ cd 01_sample1
+(env) $ python app.py
 ```
 
 # Clean up

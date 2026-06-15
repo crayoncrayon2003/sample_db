@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16.4
+    container_name: s4-postgres
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: user
+      POSTGRES_DB: test
+      TZ: "Asia/Tokyo"
+
+  elasticsearch:
+    image: elasticsearch:8.15.3
+    container_name: s4-elasticsearch
+    restart: always
+    ports:
+      - 9200:9200
+    environment:
+      discovery.type: single-node
+      xpack.security.enabled: "false"
+      ES_JAVA_OPTS: "-Xms512m -Xmx512m"
+      TZ: "Asia/Tokyo"

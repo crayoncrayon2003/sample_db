@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16.4
+    container_name: s3-postgres
+    restart: always
+    # CDC (論理レプリケーション) には wal_level=logical が必須
+    command: ["postgres", "-c", "wal_level=logical"]
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: user
+      POSTGRES_DB: test
+      TZ: "Asia/Tokyo"
+
+  elasticsearch:
+    image: elasticsearch:8.15.3
+    container_name: s3-elasticsearch
+    restart: always
+    ports:
+      - 9200:9200
+    environment:
+      discovery.type: single-node
+      xpack.security.enabled: "false"
+      ES_JAVA_OPTS: "-Xms512m -Xmx512m"
+      TZ: "Asia/Tokyo"
+
+  redis:
+    image: redis:7.4
+    container_name: s3-redis
+    restart: always
+    ports:
+      - 6379:6379
+
+  debezium:
+    image: debezium/server:2.7.3.Final
+    container_name: s3-debezium
+    restart: always
+    depends_on:
+      - postgres
+      - redis
+    volumes:
+      - ./conf:/debezium/conf
