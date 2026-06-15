@@ -28,7 +28,11 @@ $ source env/bin/activate
 
 # Test
 ```bash
-(env) $ python sample-arango.py
+# 基本のグラフ操作 / 経路探索
+(env) $ python sample1-arango.py
+
+# 特殊な検索: 俳優 -> 出演映画 -> 共演している別の俳優 をたどる
+(env) $ python sample2-arango.py
 ```
 
 # Deactivate Virtual Environment

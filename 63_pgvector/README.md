@@ -31,7 +31,11 @@ $ source env/bin/activate
 
 # Test
 ```bash
-(env) $ python sample-pgvector.py
+# 基本のベクトル検索 / フィルタ検索
+(env) $ python sample1-pgvector.py
+
+# 特殊な検索: 基準の映画に「似ている映画」を探す (レコメンド)
+(env) $ python sample2-pgvector.py
 ```
 
 # Deactivate Virtual Environment
