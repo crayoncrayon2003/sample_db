@@ -1,0 +1,20 @@
+name: memcached_04_sample4
+
+services:
+  postgres:
+    image: postgres:16.4
+    container_name: memcached-s4-postgres
+    restart: always
+    ports:
+      - "5434:5432"
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: user
+      POSTGRES_DB: sample_db
+      TZ: Asia/Tokyo
+
+  memcached:
+    image: memcached:latest
+    container_name: memcached-s4
+    ports:
+      - "11215:11211"

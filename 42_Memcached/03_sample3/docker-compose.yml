@@ -1,0 +1,8 @@
+name: memcached_03_sample3
+
+services:
+  memcached:
+    image: memcached:latest
+    container_name: memcached-s3
+    ports:
+      - "11214:11211"

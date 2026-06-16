@@ -1,0 +1,56 @@
+name: memcached_02_sample2
+
+services:
+  memcached:
+    image: memcached:latest
+    container_name: memcached-s2
+    ports:
+      - "11213:11211"
+
+  app-a:
+    image: python:3.12-slim
+    container_name: memcached-s2-app-a
+    working_dir: /app
+    volumes:
+      - .:/app
+    environment:
+      APP_NAME: app-a
+      MEMCACHED_HOST: memcached
+      MEMCACHED_PORT: 11211
+    command: sh -c "pip install --no-cache-dir -r requirements.txt && uvicorn app:app --host 0.0.0.0 --port 8000"
+    ports:
+      - "4211:8000"
+    depends_on:
+      - memcached
+
+  app-b:
+    image: python:3.12-slim
+    container_name: memcached-s2-app-b
+    working_dir: /app
+    volumes:
+      - .:/app
+    environment:
+      APP_NAME: app-b
+      MEMCACHED_HOST: memcached
+      MEMCACHED_PORT: 11211
+    command: sh -c "pip install --no-cache-dir -r requirements.txt && uvicorn app:app --host 0.0.0.0 --port 8000"
+    ports:
+      - "4212:8000"
+    depends_on:
+      - memcached
+
+  app-c:
+    image: python:3.12-slim
+    container_name: memcached-s2-app-c
+    working_dir: /app
+    volumes:
+      - .:/app
+    environment:
+      APP_NAME: app-c
+      MEMCACHED_HOST: memcached
+      MEMCACHED_PORT: 11211
+    command: sh -c "pip install --no-cache-dir -r requirements.txt && uvicorn app:app --host 0.0.0.0 --port 8000"
+    ports:
+      - "4213:8000"
+    depends_on:
+      - memcached

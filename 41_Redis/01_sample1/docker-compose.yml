@@ -1,0 +1,56 @@
+name: redis_01_sample1
+
+services:
+  redis:
+    image: redis:7.4
+    container_name: redis-s1
+    ports:
+      - "6381:6379"
+
+  app-a:
+    image: python:3.12-slim
+    container_name: redis-s1-app-a
+    working_dir: /app
+    volumes:
+      - .:/app
+    environment:
+      APP_NAME: app-a
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+    command: sh -c "pip install --no-cache-dir -r requirements.txt && uvicorn app:app --host 0.0.0.0 --port 8000"
+    ports:
+      - "4101:8000"
+    depends_on:
+      - redis
+
+  app-b:
+    image: python:3.12-slim
+    container_name: redis-s1-app-b
+    working_dir: /app
+    volumes:
+      - .:/app
+    environment:
+      APP_NAME: app-b
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+    command: sh -c "pip install --no-cache-dir -r requirements.txt && uvicorn app:app --host 0.0.0.0 --port 8000"
+    ports:
+      - "4102:8000"
+    depends_on:
+      - redis
+
+  app-c:
+    image: python:3.12-slim
+    container_name: redis-s1-app-c
+    working_dir: /app
+    volumes:
+      - .:/app
+    environment:
+      APP_NAME: app-c
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+    command: sh -c "pip install --no-cache-dir -r requirements.txt && uvicorn app:app --host 0.0.0.0 --port 8000"
+    ports:
+      - "4103:8000"
+    depends_on:
+      - redis

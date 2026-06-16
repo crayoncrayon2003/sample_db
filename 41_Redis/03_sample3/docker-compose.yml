@@ -1,0 +1,8 @@
+name: redis_03_sample3
+
+services:
+  redis:
+    image: redis:7.4
+    container_name: redis-s3
+    ports:
+      - "6383:6379"

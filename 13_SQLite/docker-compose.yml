@@ -1,0 +1,8 @@
+services:
+  sqlite:
+    image: python:3.12-slim
+    container_name: sqlite-sample
+    working_dir: /app
+    volumes:
+      - .:/app
+    command: python -c "import time; time.sleep(10**9)"

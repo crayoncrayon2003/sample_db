@@ -1,0 +1,8 @@
+name: redis_04_sample4
+
+services:
+  redis:
+    image: redis:7.4
+    container_name: redis-s4
+    ports:
+      - "6384:6379"
