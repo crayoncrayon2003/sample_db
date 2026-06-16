@@ -1,0 +1,20 @@
+services:
+  prometheus:
+    image: prom/prometheus:v3.1.0
+    container_name: prometheus
+    restart: always
+    ports:
+      - 9090:9090
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    environment:
+      TZ: "Asia/Tokyo"
+
+  pushgateway:
+    image: prom/pushgateway:v1.11.0
+    container_name: pushgateway
+    restart: always
+    ports:
+      - 9092:9091
+    environment:
+      TZ: "Asia/Tokyo"

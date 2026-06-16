@@ -1,0 +1,17 @@
+services:
+  victoriametrics:
+    image: victoriametrics/victoria-metrics:v1.111.0
+    container_name: victoriametrics
+    restart: always
+    command:
+      # 直近データもすぐ検索できるよう遅延を短くする (デフォルト 30s)
+      - "-search.latencyOffset=1s"
+    ports:
+      - 8428:8428
+    environment:
+      TZ: "Asia/Tokyo"
+    volumes:
+      - victoriametrics-data:/victoria-metrics-data
+
+volumes:
+  victoriametrics-data:

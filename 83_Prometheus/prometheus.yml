@@ -1,0 +1,9 @@
+global:
+  scrape_interval: 2s
+
+scrape_configs:
+  # Pushgateway に push されたメトリクスを 2 秒ごとにスクレイプする
+  - job_name: "pushgateway"
+    honor_labels: true
+    static_configs:
+      - targets: ["pushgateway:9091"]
