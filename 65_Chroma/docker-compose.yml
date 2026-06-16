@@ -1,0 +1,14 @@
+services:
+  chroma:
+    image: chromadb/chroma:0.5.23
+    container_name: chroma
+    restart: always
+    ports:
+      - 8000:8000
+    environment:
+      TZ: "Asia/Tokyo"
+    volumes:
+      - chroma-data:/chroma/chroma
+
+volumes:
+  chroma-data:
