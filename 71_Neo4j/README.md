@@ -1,9 +1,11 @@
 # Up
+
 ```bash
 $ sudo docker compose up -d
 ```
 
 # DB Sitting
+
 Neo4j はグラフDBで、Cypher を Bolt プロトコル / クライアントライブラリ (neo4j) 経由で実行します。初回ログインのユーザ / パスワードは docker-compose.yml の `NEO4J_AUTH` で設定しています。
 
 - Bolt: bolt://localhost:7687 (neo4j / password)
@@ -20,7 +22,8 @@ neo4j@neo4j> :exit
 ```
 
 # Creating Virtual Environment
-```bash 
+
+```bash
 $ python -m venv env
 $ source env/bin/activate
 (env) $ pip install --upgrade pip setuptools
@@ -28,6 +31,7 @@ $ source env/bin/activate
 ```
 
 # Test
+
 ```bash
 # 基本のグラフ操作 / 経路探索
 (env) $ python sample1-neo4j.py
@@ -37,16 +41,19 @@ $ source env/bin/activate
 ```
 
 # Deactivate Virtual Environment
+
 ```bash
 (env) $ deactivate
 ```
 
 # Down
+
 ```bash
 $ sudo docker compose down
 ```
 
 # Clean up
+
 ```bash
 $ sudo rm -rf env
 ```

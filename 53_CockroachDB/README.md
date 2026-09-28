@@ -1,9 +1,11 @@
 # Up
+
 ```bash
 $ sudo docker compose up -d
 ```
 
 # DB Sitting
+
 ```bash
 $ docker exec -it cockroach bash
 
@@ -27,15 +29,15 @@ root@localhost:26257/defaultdb> USE test;
 root@localhost:26257/test> GRANT ALL ON SCHEMA public TO "user";
 
 # QLクライアント終了
-root@localhost:26257/test> \q
+root@localhost:26257/test> \q;
 
 # コンテナ抜ける
 root@cockroach:/cockroach# exit
 ```
 
-
 # Creating Virtual Environment
-```bash 
+
+```bash
 $ python -m venv env
 $ source env/bin/activate
 (env) $ pip install --upgrade pip setuptools
@@ -43,21 +45,25 @@ $ source env/bin/activate
 ```
 
 # Test
+
 ```bash
 (env) $ python sample-cockroach.py
 ```
 
 # Deactivate Virtual Environment
+
 ```bash
 (env) $ deactivate
 ```
 
 # Down
+
 ```bash
 $ sudo docker compose down
 ```
 
 # Clean up
+
 ```bash
 $ sudo rm -rf env
 ```

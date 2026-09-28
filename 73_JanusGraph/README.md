@@ -1,9 +1,11 @@
 # Up
+
 ```bash
 $ sudo docker compose up -d
 ```
 
 # DB Sitting
+
 JanusGraph は分散グラフDBで、Gremlin (Apache TinkerPop) クエリを WebSocket / クライアントライブラリ (gremlinpython) 経由で実行します。公式イメージは単体で BerkeleyDB + Lucene 構成の Gremlin Server を起動します。
 
 - Gremlin Server (WebSocket): ws://localhost:8182/gremlin
@@ -23,14 +25,16 @@ gremlin> :exit
 ```
 
 # Creating Virtual Environment
-```bash 
+
+```bash
 $ python -m venv env
 $ source env/bin/activate
 (env) $ pip install --upgrade pip setuptools
-(env) $ pip install gremlinpython==3.7.2
+(env) $ pip install gremlinpython==3.7.2 async-timeout==4.0.3
 ```
 
 # Test
+
 ```bash
 # 基本のグラフ操作 / 経路探索
 (env) $ python sample1-janusgraph.py
@@ -40,16 +44,19 @@ $ source env/bin/activate
 ```
 
 # Deactivate Virtual Environment
+
 ```bash
 (env) $ deactivate
 ```
 
 # Down
+
 ```bash
 $ sudo docker compose down
 ```
 
 # Clean up
+
 ```bash
 $ sudo rm -rf env
 ```

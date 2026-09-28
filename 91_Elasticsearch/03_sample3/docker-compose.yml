@@ -1,8 +1,6 @@
-version: '3.8'
-
 services:
   postgres:
-    image: postgres:16.4
+    image: postgres:16.15
     container_name: s3-postgres
     restart: always
     # CDC (論理レプリケーション) には wal_level=logical が必須
@@ -16,7 +14,7 @@ services:
       TZ: "Asia/Tokyo"
 
   elasticsearch:
-    image: elasticsearch:8.15.3
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.19.22
     container_name: s3-elasticsearch
     restart: always
     ports:
@@ -35,7 +33,7 @@ services:
       - 6379:6379
 
   debezium:
-    image: debezium/server:2.7.3.Final
+    image: quay.io/debezium/server:2.7.4.Final
     container_name: s3-debezium
     restart: always
     depends_on:

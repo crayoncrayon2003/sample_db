@@ -1,8 +1,6 @@
-version: "3.8"
-
 services:
   janusgraph:
-    image: janusgraph/janusgraph:1.0.0
+    image: janusgraph/janusgraph:1.0.1
     container_name: janusgraph
     restart: unless-stopped
     ports:

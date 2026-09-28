@@ -1,6 +1,6 @@
 services:
   weaviate:
-    image: cr.weaviate.io/semitechnologies/weaviate:1.28.2
+    image: cr.weaviate.io/semitechnologies/weaviate:1.28.16
     container_name: weaviate
     restart: always
     ports:

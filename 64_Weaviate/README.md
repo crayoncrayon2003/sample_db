@@ -1,9 +1,11 @@
 # Up
+
 ```bash
 $ sudo docker compose up -d
 ```
 
 # DB Sitting
+
 Weaviate はベクトルDBで、REST / gRPC API またはクライアントライブラリ (weaviate-client) 経由でアクセスします。このサンプルでは認証を無効 (匿名アクセス) にし、ベクトルは自分で渡すため vectorizer モジュールは使いません。
 
 - REST API: http://localhost:8080
@@ -18,7 +20,8 @@ $ curl http://localhost:8080/v1/schema
 ```
 
 # Creating Virtual Environment
-```bash 
+
+```bash
 $ python -m venv env
 $ source env/bin/activate
 (env) $ pip install --upgrade pip setuptools
@@ -26,6 +29,7 @@ $ source env/bin/activate
 ```
 
 # Test
+
 ```bash
 # 基本のベクトル検索 / フィルタ検索
 (env) $ python sample1-weaviate.py
@@ -35,16 +39,19 @@ $ source env/bin/activate
 ```
 
 # Deactivate Virtual Environment
+
 ```bash
 (env) $ deactivate
 ```
 
 # Down
+
 ```bash
 $ sudo docker compose down
 ```
 
 # Clean up
+
 ```bash
 $ sudo rm -rf env
 ```

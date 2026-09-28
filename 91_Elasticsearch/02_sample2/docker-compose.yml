@@ -1,8 +1,6 @@
-version: '3.8'
-
 services:
   postgres:
-    image: postgres:16.4
+    image: postgres:16.15
     container_name: s2-postgres
     restart: always
     ports:
@@ -14,7 +12,7 @@ services:
       TZ: "Asia/Tokyo"
 
   elasticsearch:
-    image: elasticsearch:8.15.3
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.19.22
     container_name: s2-elasticsearch
     restart: always
     ports:

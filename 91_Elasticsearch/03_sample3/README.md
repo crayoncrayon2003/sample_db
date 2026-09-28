@@ -7,13 +7,9 @@
 - ❌ インフラ (Debezium + ブローカー) が必要で構成が重い。ニアリアルタイム (結果整合性)
 
 1. app.py（書き込む側）は、 PostgreSQL へデータを書く（正データ）。ES も Redis も知らない
-
 2. Debezium が PostgreSQL の WAL（変更ログ）を監視し、変更を Redis Streams へ publish する
-
 3. subscriber.py は、 Redis Streams から変更を subscribe する
-
 4. subscriber.py は、 変更を Elasticsearch に書き込む（検索用コピー）
-
 5. クライアントは、必要に応じて PostgreSQL／Elasticsearch のデータを読み取る
 
 ```
@@ -37,6 +33,7 @@
 ポイントは、**app.py から出ている矢印は PostgreSQL への1本だけ**で、ES や Redis へは伸びていないこと。sample2 (Queue) では app.py が自分で Redis に push していましたが、CDC では **PostgreSQL の変更ログ**が変更を流すので、app.py は同期を一切書きません。
 
 # Up
+
 Debezium が PostgreSQL に接続してレプリケーションスロット / publication を自動作成します。起動に少し時間がかかります。
 
 ```bash
@@ -47,6 +44,7 @@ $ docker compose logs -f debezium
 ```
 
 # Test
+
 仮想環境は親フォルダ (`91_Elasticsearch`) の共通 venv を使います。ターミナルを2つ使います。
 
 ```bash
@@ -60,6 +58,7 @@ $ docker compose logs -f debezium
 `app.py` は ES のことを一切書いていないのに、ターミナル1の subscriber が `indexed = c 1 Apple MacBook` のように反映します。
 
 # sample1 / sample2 との差: 同期コードが無いのに反映される
+
 読み取りを PostgreSQL / Elasticsearch で分けてあります。
 
 ```bash
@@ -78,6 +77,7 @@ $ docker compose logs -f debezium
 - sample3 (CDC) … app.py は **PostgreSQL に書くだけ**。あとは Debezium が自動で流す
 
 ## CDC の真価: アプリを通さない変更も捕捉する
+
 psql から**直接** UPDATE しても、subscriber が拾って ES に反映されます (app.py を経由しない変更も漏れなく同期される)。
 
 ```bash
@@ -88,11 +88,13 @@ $ docker exec -it s3-postgres psql -U user -d test \
 ```
 
 # 確認 (curl で直接見る場合)
+
 ```bash
 $ curl "http://localhost:9200/products/_search?pretty"
 ```
 
 # Down
+
 ```bash
 $ sudo docker compose down
 ```

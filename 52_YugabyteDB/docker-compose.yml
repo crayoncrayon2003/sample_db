@@ -1,7 +1,7 @@
 services:
 
   yugabyte:
-    image: yugabytedb/yugabyte:2025.2.1.0-b141
+    image: yugabytedb/yugabyte:2025.2.6.0-b111
     container_name: yugabyte
     hostname: yugabyte
     command: >

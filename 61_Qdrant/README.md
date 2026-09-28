@@ -1,9 +1,11 @@
 # Up
+
 ```bash
 $ sudo docker compose up -d
 ```
 
 # DB Sitting
+
 Qdrant は SQL クライアントを持たず、REST / gRPC API またはクライアントライブラリ経由でアクセスします。
 
 - REST / gRPC API: http://localhost:6333
@@ -19,7 +21,8 @@ $ curl http://localhost:6333/collections
 ```
 
 # Creating Virtual Environment
-```bash 
+
+```bash
 $ python -m venv env
 $ source env/bin/activate
 (env) $ pip install --upgrade pip setuptools
@@ -27,6 +30,7 @@ $ source env/bin/activate
 ```
 
 # Test
+
 ```bash
 # 基本のベクトル検索 / フィルタ検索
 (env) $ python sample1-qdrant.py
@@ -36,16 +40,19 @@ $ source env/bin/activate
 ```
 
 # Deactivate Virtual Environment
+
 ```bash
 (env) $ deactivate
 ```
 
 # Down
+
 ```bash
 $ sudo docker compose down
 ```
 
 # Clean up
+
 ```bash
 $ sudo rm -rf env
 ```

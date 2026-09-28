@@ -1,9 +1,7 @@
-version: "3.9"
-
 services:
 
   pd:
-    image: pingcap/pd:v8.5.5
+    image: pingcap/pd:v8.5.8
     container_name: tidb-pd
     command:
       - --name=pd
@@ -21,7 +19,7 @@ services:
       - tidb-network
 
   tikv:
-    image: pingcap/tikv:v8.5.5
+    image: pingcap/tikv:v8.5.8
     container_name: tidb-tikv
     command:
       - --addr=0.0.0.0:20160
@@ -36,7 +34,7 @@ services:
       - tidb-network
 
   tidb:
-    image: pingcap/tidb:v8.5.5
+    image: pingcap/tidb:v8.5.8
     container_name: tidb-server
     command:
       - --store=tikv

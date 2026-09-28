@@ -6,13 +6,9 @@
 - ❌ 同期のきっかけ (push) を作るのはアプリ。push を書き忘れると ES は更新されない。別経路 (直接 SQL など) の変更は捕捉できない
 
 1. app.py（書き込む側）は、 PostgreSQL へデータを書く（正データ）
-
 2. app.py（書き込む側）は、 Redisへ、「こういうデータが入ったよ」というメモを push する
-
 3. worker.py は、 Redisから、メモを pop する
-
 4. worker.py は、 メモを Elasticsearch に書き込む
-
 5. クライアントは、必要に応じてPostgreSQL／Elasticsearchのデータを読み取る
 
 ```
@@ -28,15 +24,16 @@
      │ ④ 書く
      ▼
  (Elasticsearch)　← 5.クライアントが読む
-
 ```
 
 # Up
+
 ```bash
 $ sudo docker compose up -d
 ```
 
 # Test
+
 仮想環境は親フォルダ (`91_Elasticsearch`) の共通 venv を使います。ターミナルを2つ使います。
 
 ```bash
@@ -50,6 +47,7 @@ $ sudo docker compose up -d
 `app.py` を実行すると、ターミナル1のワーカーが順次 `indexed = ...` と表示して ES に反映します。
 
 # sample1 との差: 非同期の遅延を見る
+
 読み取りを PostgreSQL / Elasticsearch で分けてあります。**worker.py を止めた状態**で試すと、Queue パターンの「反映に遅延がある」性質がよく分かります。
 
 ```bash
@@ -74,11 +72,13 @@ $ sudo docker compose up -d
 sample1 (Dual Write) では write.py の中で PostgreSQL と ES の両方に書くので、書いた直後にどちらにもデータがあります。sample2 (Queue) では ES への反映が worker.py まで遅れる、という違いです。
 
 # 確認 (curl で直接見る場合)
+
 ```bash
 $ curl "http://localhost:9200/products/_search?pretty"
 ```
 
 # Down
+
 ```bash
 $ sudo docker compose down
 ```

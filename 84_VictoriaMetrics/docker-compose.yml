@@ -1,6 +1,6 @@
 services:
   victoriametrics:
-    image: victoriametrics/victoria-metrics:v1.111.0
+    image: victoriametrics/victoria-metrics:v1.152.0
     container_name: victoriametrics
     restart: always
     command:

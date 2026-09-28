@@ -1,9 +1,11 @@
 # Up
+
 ```bash
 $ sudo docker compose up -d
 ```
 
 # DB Sitting
+
 ArangoDB はマルチモデル (ドキュメント / グラフ / キーバリュー) DBで、HTTP API・AQL・クライアントライブラリ (python-arango) 経由でアクセスします。root パスワードは docker-compose.yml の `ARANGO_ROOT_PASSWORD` で設定しています。サンプルコードは test データベースを自動作成します。
 
 - HTTP API / Web UI: http://localhost:8529 (root / password)
@@ -19,7 +21,8 @@ $ docker exec -it arangodb arangosh --server.password password
 ```
 
 # Creating Virtual Environment
-```bash 
+
+```bash
 $ python -m venv env
 $ source env/bin/activate
 (env) $ pip install --upgrade pip setuptools
@@ -27,6 +30,7 @@ $ source env/bin/activate
 ```
 
 # Test
+
 ```bash
 # 基本のグラフ操作 / 経路探索
 (env) $ python sample1-arango.py
@@ -36,16 +40,19 @@ $ source env/bin/activate
 ```
 
 # Deactivate Virtual Environment
+
 ```bash
 (env) $ deactivate
 ```
 
 # Down
+
 ```bash
 $ sudo docker compose down
 ```
 
 # Clean up
+
 ```bash
 $ sudo rm -rf env
 ```

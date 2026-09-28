@@ -1,6 +1,6 @@
 services:
   questdb:
-    image: questdb/questdb:8.2.1
+    image: questdb/questdb:8.2.3
     container_name: questdb
     restart: always
     ports:

@@ -11,27 +11,32 @@ Memcached  -- miss -->  PostgreSQL
 ```
 
 # Up
+
 ```bash
 $ sudo docker compose up -d
 ```
 
-
 # Test
+
 ```bash
+(env) $ pip install pymemcache
 (env) $ python sample-cache-db.py
 ```
 
 # Deactivate Virtual Environment
+
 ```bash
 (env) $ deactivate
 ```
 
 # Down
+
 ```bash
 $ sudo docker compose down
 ```
 
 # Clean up
+
 ```bash
 $ sudo rm -rf env
 ```

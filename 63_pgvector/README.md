@@ -1,9 +1,11 @@
 # Up
+
 ```bash
 $ sudo docker compose up -d
 ```
 
 # DB Sitting
+
 pgvector は PostgreSQL の拡張なので、通常の PostgreSQL クライアント / SQL でアクセスします。ベクトル型を使う前に `CREATE EXTENSION vector;` が必要です（サンプルコード内で自動実行します）。
 
 - PostgreSQL: localhost:5432 (user / user)
@@ -22,7 +24,8 @@ user=# \q
 ```
 
 # Creating Virtual Environment
-```bash 
+
+```bash
 $ python -m venv env
 $ source env/bin/activate
 (env) $ pip install --upgrade pip setuptools
@@ -30,6 +33,7 @@ $ source env/bin/activate
 ```
 
 # Test
+
 ```bash
 # 基本のベクトル検索 / フィルタ検索
 (env) $ python sample1-pgvector.py
@@ -39,16 +43,19 @@ $ source env/bin/activate
 ```
 
 # Deactivate Virtual Environment
+
 ```bash
 (env) $ deactivate
 ```
 
 # Down
+
 ```bash
 $ sudo docker compose down
 ```
 
 # Clean up
+
 ```bash
 $ sudo rm -rf env
 ```

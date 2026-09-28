@@ -1,8 +1,6 @@
-version: "3.9"
-
 services:
   cockroach:
-    image: cockroachdb/cockroach:v23.2.0
+    image: cockroachdb/cockroach:v23.2.31
     container_name: cockroach
     command: start-single-node --insecure
     ports:

@@ -1,9 +1,11 @@
 # Up
+
 ```bash
 $ sudo docker compose up -d
 ```
 
 # DB Sitting
+
 Milvus は SQL クライアントを持たず、gRPC API またはクライアントライブラリ (pymilvus) 経由でアクセスします。standalone 構成は etcd・MinIO に依存し、同じ docker compose で一緒に起動します。
 
 - gRPC API: localhost:19530
@@ -16,7 +18,8 @@ $ curl http://localhost:9091/healthz
 ```
 
 # Creating Virtual Environment
-```bash 
+
+```bash
 $ python -m venv env
 $ source env/bin/activate
 (env) $ pip install --upgrade pip
@@ -25,6 +28,7 @@ $ source env/bin/activate
 ```
 
 # Test
+
 ```bash
 # 基本のベクトル検索 / フィルタ検索
 (env) $ python sample1-milvus.py
@@ -34,16 +38,19 @@ $ source env/bin/activate
 ```
 
 # Deactivate Virtual Environment
+
 ```bash
 (env) $ deactivate
 ```
 
 # Down
+
 ```bash
 $ sudo docker compose down
 ```
 
 # Clean up
+
 ```bash
 $ sudo rm -rf env
 ```

@@ -4,7 +4,8 @@ import random
 import datetime
 
 def main():
-    uri = "mongodb://localhost:27017/?replicaSet=dbrs"
+    # ホスト側からは公開ポートへ直接接続する（Docker 内部名の探索を避ける）。
+    uri = "mongodb://localhost:27017/?replicaSet=dbrs&directConnection=true"
 
     # Connect to the server
     client = MongoClient(uri)
